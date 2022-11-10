@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!!</title>
+    <style>
+        table { border-collapse: collapse; }
+        table, th, td { border: 1px solid black; }
+    </style>
+</head>
+
+<body>
+    <h1>Hello World!</h1>
+
+    We are using Node.js <span id="node-version"></span>, Chromium <span id="chrome-version"></span>, Electron <span id="electron-version"></span>, and Serialport <span id="serialport-version"></span>
+
+    <div id="error"></div>
+    <div id="ports"></div>
+
+    <div>
+        <select onchange="updatePort()" value ="" name="comm_port" id="port-id">
+            <option value="COM1">COM1</option>
+            <option value="COM2">COM2</option>
+            <option value="COM3">COM3</option>
+            <option value="COM4">COM4</option>
+            <option value="COM5">COM5</option>
+            <option value="COM6">COM6</option>
+            <option value="COM7">COM7</option>
+            <option value="COM8">COM8</option>
+          </select>
+    </div>
+
+    <div>
+        <button onclick="sendData(1)">1</button>
+        <button onclick="sendData(2)">2</button>
+        <button onclick="sendData(3)">3</button>
+        <button onclick="sendData(4)">4</button>
+        <button onclick="sendData(5)">5</button>
+        <button onclick="sendData(6)">6</button>
+        <button onclick="sendData(7)">7</button>
+        <button onclick="sendData(8)">8</button>
+    </div>
+
+</body>
+
+<script src="./renderer.js"></script>
+
+</html>
