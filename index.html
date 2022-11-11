@@ -3,22 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Hello World!!</title>
+    <title>Relay Controller</title>
     <style>
+        body {background-color: rgb(76, 173, 230);}
         table { border-collapse: collapse; }
         table, th, td { border: 1px solid black; }
+        .control-container {margin-top: 2rem;}
+        .button-container {margin-top: 2rem;}
+        .personalised-container {margin-top: 2rem;}
+
     </style>
 </head>
 
 <body>
-    <h1>Hello World!</h1>
+    <h1>Controlador de Caja de Relés</h1>
 
-    We are using Node.js <span id="node-version"></span>, Chromium <span id="chrome-version"></span>, Electron <span id="electron-version"></span>, and Serialport <span id="serialport-version"></span>
+    <h4>
+        Version de Node.js <span id="node-version"></span>
+    </h4>
+    
+    <h4>
+        Version de Chromium <span id="chrome-version"></span>
+    </h4>
+
+    <h4>
+        Version de Electron <span id="electron-version"></span>
+    </h4>
+
+    <h4>
+        Version de Serialport <span id="serialport-version"></span>
+    </h4>
+    
 
     <div id="error"></div>
+
+    <h2>Puertos disponibles en el sistema:</h2>
     <div id="ports"></div>
 
-    <div>
+    <div class="control-container">
+        <h2>Seleccionar Puerto:</h2>
         <select onchange="updatePort()" value ="" name="comm_port" id="port-id">
             <option value="COM1">COM1</option>
             <option value="COM2">COM2</option>
@@ -31,7 +54,8 @@
           </select>
     </div>
 
-    <div>
+    <div class="button-container">
+        <h2>Haga click para conmutar estado:</h2>
         <button onclick="sendData(1)">1</button>
         <button onclick="sendData(2)">2</button>
         <button onclick="sendData(3)">3</button>
@@ -40,6 +64,11 @@
         <button onclick="sendData(6)">6</button>
         <button onclick="sendData(7)">7</button>
         <button onclick="sendData(8)">8</button>
+    </div>
+
+    <div class="personalised-container">
+        <input type="text" id="personalised-command">
+        <button onclick="enviarComandoPersonalizado()">Send</button>
     </div>
 
 </body>

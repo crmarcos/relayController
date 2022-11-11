@@ -18,9 +18,24 @@ function updatePort() {
 
 // Function to send data to the port
 function sendData(p) {
-  console.log("Enviando datos...");
+  console.log("Enviando Toggle port "+ p + " ...");
     
-  port.write('Toggle port '+ p, function(err) {
+  port.write('4,'+ p +',0,0,0\n', function(err) {
+    if (err) {
+      return console.log('Error on write: ', err.message)
+    }
+    console.log('message written')
+  })
+}
+
+// Function to send personalised command
+function enviarComandoPersonalizado() {
+  let command = document.getElementById("personalised-command").value;
+  console.log(command);
+
+  console.log("Enviando comando personalizado: " + command );
+    
+  port.write(command + '\n', function(err) {
     if (err) {
       return console.log('Error on write: ', err.message)
     }
