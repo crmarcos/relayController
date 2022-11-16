@@ -4,15 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Relay Controller</title>
-    <style>
-        body {background-color: rgb(76, 173, 230);}
-        table { border-collapse: collapse; }
-        table, th, td { border: 1px solid black; }
-        .control-container {margin-top: 2rem;}
-        .button-container {margin-top: 2rem;}
-        .personalised-container {margin-top: 2rem;}
-
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -21,7 +13,7 @@
     <h4>
         Version de Node.js <span id="node-version"></span>
     </h4>
-    
+
     <h4>
         Version de Chromium <span id="chrome-version"></span>
     </h4>
@@ -33,25 +25,18 @@
     <h4>
         Version de Serialport <span id="serialport-version"></span>
     </h4>
-    
 
-    <div id="error"></div>
+    <div class="port-container" id="port-container">
+        <label class="port-lbl">Puerto</label>
+        <select class="port-select" id="port-options" value="" name="comm_port" id="port-id">
+        </select>
 
-    <h2>Puertos disponibles en el sistema:</h2>
-    <div id="ports"></div>
+        <img class="reload-btn" src="reload.svg" onclick="listSerialPorts()" alt="reload" srcset="">
+        
+        <button class="port-btn" onclick="connectToPort()">Conectar</button>
 
-    <div class="control-container">
-        <h2>Seleccionar Puerto:</h2>
-        <select onchange="updatePort()" value ="" name="comm_port" id="port-id">
-            <option value="COM1">COM1</option>
-            <option value="COM2">COM2</option>
-            <option value="COM3">COM3</option>
-            <option value="COM4">COM4</option>
-            <option value="COM5">COM5</option>
-            <option value="COM6">COM6</option>
-            <option value="COM7">COM7</option>
-            <option value="COM8">COM8</option>
-          </select>
+        <label id="port-status" class="port-status-lbl">No conectado a ningún puerto...</label>
+
     </div>
 
     <div class="button-container">

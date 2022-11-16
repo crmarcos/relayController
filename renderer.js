@@ -10,17 +10,36 @@ let port;
 
 // Callback to read the port path where to write
 // The user must select the correct one
-function updatePort() {
-  portId = document.getElementById("port-id");
-  console.log(portId.value);
-  port = new SerialPort({ path: portId.value, baudRate: 9600 });
+function connectToPort() {
+
+  let x = document.getElementById("port-options");
+  let portId = x.options[x.selectedIndex].text;
+  console.log('PPP:' + portId)
+
+  port = new SerialPort({ path: portId, baudRate: 9600 }, function (err) {
+    if (err) {
+      document.getElementById('port-status').textContent = portId + " / " + err.message;
+      document.getElementById("port-container").classList.add("port-container-not-connected")
+      document.getElementById("port-container").classList.remove("port-container-connected")
+      return console.log('Error: ', err.message)
+    }
+  });
+
+  port.on('open', function() {
+    // open logic
+    console.log("conectado")
+    document.getElementById("port-container").classList.remove("port-container-not-connected")
+    document.getElementById("port-container").classList.add("port-container-connected")
+    document.getElementById('port-status').textContent = "Conectado a " + portId;
+  });
+
 }
 
 // Function to send data to the port
 function sendData(p) {
-  console.log("Enviando Toggle port "+ p + " ...");
-    
-  port.write('4,'+ p +',0,0,0\n', function(err) {
+  console.log("Enviando Toggle port " + p + " ...");
+
+  port.write('4,' + p + ',0,0,0\n', function (err) {
     if (err) {
       return console.log('Error on write: ', err.message)
     }
@@ -33,9 +52,9 @@ function enviarComandoPersonalizado() {
   let command = document.getElementById("personalised-command").value;
   console.log(command);
 
-  console.log("Enviando comando personalizado: " + command );
-    
-  port.write(command + '\n', function(err) {
+  console.log("Enviando comando personalizado: " + command);
+
+  port.write(command + '\n', function (err) {
     if (err) {
       return console.log('Error on write: ', err.message)
     }
@@ -46,20 +65,34 @@ function enviarComandoPersonalizado() {
 // Function to get all the ports available in the PC
 async function listSerialPorts() {
   await SerialPort.list().then((ports, err) => {
-    if(err) {
-      document.getElementById('error').textContent = err.message
+    if (err) {
+      document.getElementById('port-status').textContent = err.message
       return
     } else {
-      document.getElementById('error').textContent = ''
+      document.getElementById('port-status').textContent = ''
     }
-    console.log('ports', ports);
 
+    // Clear the Select options            
+    var x = document.getElementById("port-options");
+    if (x.length > 0) {
+      x.remove(x.length - 1);
+    }
+
+    // Load the options in Select 
+    for (i = ports.length - 1; i >= 0; i--) {
+      var x = document.getElementById("port-options");
+      var option = document.createElement("option");
+      option.text = ports[i].path;
+      x.add(option, x[0]);
+    }
+
+    // Update the Connection message
     if (ports.length === 0) {
-      document.getElementById('error').textContent = 'No ports discovered'
+      document.getElementById('port-status').textContent = 'No se descubrieron puertos';
+    } else {
+      document.getElementById('port-status').textContent = ports.length + ' Puertos detectados (Seleccionar uno)';
     }
 
-    tableHTML = tableify(ports)
-    document.getElementById('ports').innerHTML = tableHTML
   })
 }
 
@@ -72,4 +105,4 @@ function listPorts() {
 // This timeout reschedules itself.
 //setTimeout(listPorts, 2000);
 
-listSerialPorts()
+//listSerialPorts()

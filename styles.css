@@ -1,0 +1,84 @@
+body {
+    background-color: rgb(76, 173, 230);
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+.port-container {
+    background-color: rgb(204, 62, 52);
+
+    width: 640px;
+
+    border: 1px solid black;
+    border-radius: 10px;
+
+    padding: 10px 5px;
+
+    display: flex;
+    margin-top: 2rem;
+
+    align-items: center;
+}
+
+.port-container-not-connected {
+    background-color: rgb(204, 62, 52);
+}
+
+.port-container-connected {
+    background-color: rgb(17, 146, 0);
+}
+
+.port-lbl {
+    margin-right: 2%;
+    color:black;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.port-select {
+
+    height: 1.5rem;
+    width: 20%;
+
+    margin-right: 2%;
+
+    border-radius: 10px;
+}
+
+.reload-btn {
+    width: 25px;
+
+    margin-right: 2%;
+}
+
+.port-btn {
+    border-radius: 10px;
+    font-size: 1rem;
+
+    margin-right: 2%;
+
+    background-color: chartreuse;
+}
+
+.button-container {
+    margin-top: 2rem;
+}
+
+.port-status-lbl {
+    font-style: italic;
+    font-size: 1.3rem;
+}
+
+
+.personalised-container {
+    margin-top: 2rem;
+}
