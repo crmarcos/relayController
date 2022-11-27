@@ -22,7 +22,7 @@ npm start --scripts-prepend-node-path
 
 To generate a ".exe" file run the following command:
 
-``bash
+```bash
 # Run the make commands
 npm make 
 
