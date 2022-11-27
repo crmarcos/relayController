@@ -68,15 +68,28 @@
     <div class="sequence-container">
         <h2>Tabla de secuencias:</h2>
 
-        <label for="sequence-file">Select a file:</label>
-        <input type="file" name="sequence-file" id="sequence-file"> 
-        <button onclick="saveTable()">Guardar Cambios de Tabla</button>
+        <div class="sequence-control-panel">
+            <label for="file-upload" class="custom-sequence-button">
+                Leer Archivo
+            </label>
+            <input id="file-upload" type="file" />
 
-        <div id="table-container" class="table-container"></div>
+            <button class="custom-sequence-button save-button" onclick="saveTable()">Guardar Tabla</button>
+
+            <button class="custom-sequence-button send-button" onclick="sendTableToDevice()">Enviar Tabla</button>
+
+            <button class="custom-sequence-button run-button" onclick="runSequence()">Comenzar</button>
+
+            <button class="custom-sequence-button stop-button" onclick="stopSequence()">Detener</button>
+        </div>
+
+        <label id="file-status" class="file-status-lbl">Ningún archivo seleccionado... (El archivo debe generarse
+            previamente con el bloc de notas)</label>
+
+        <div id="table-container" class="table-container">
+
+        </div>
     </div>
-
-
-    <button onclick="download()">Create file</button>
 
 </body>
 

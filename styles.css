@@ -7,6 +7,7 @@
 
 body {
     margin: 2%;
+    min-width: 900px;
 }
 
 h1 {
@@ -84,6 +85,7 @@ body {
     font-size: 1rem;
 
     margin-right: 2%;
+    padding: 5px;
 
     background-color: chartreuse;
 }
@@ -98,6 +100,7 @@ body {
 
 .manual-control-container button {
     width: 12%;
+    height: 50px;
 
     margin-left: 1px;
     margin-right: 1px;
@@ -125,6 +128,8 @@ body {
     width: 100%;
     overflow-x: auto;
     white-space: nowrap;
+
+    margin-top: 1rem;
 }
 
 table {
@@ -146,4 +151,47 @@ table th:nth-child(2) {
 
 table input {
     width: 100%;
+}
+
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-sequence-button {
+    text-align: center;
+    width: 15%;
+
+    border: 1px solid rgb(10, 14, 10);
+    background-color: rgb(224, 205, 28);
+    border-radius: 5px;
+
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 1px;
+    cursor: pointer;
+
+    font-size: 1rem;
+    font-family: sans-serif;
+}
+
+.save-button {
+    background-color: rgb(230, 107, 36);
+}
+
+.send-button {
+    background-color: rgb(224, 70, 24);
+}
+
+.run-button {
+    background-color: rgb(53, 209, 22);
+}
+
+.stop-button {
+    background-color: rgb(226, 17, 17);
+}
+
+.file-status-lbl {
+    font-size: 1.5rem;
+    font-style: italic;
 }

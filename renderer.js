@@ -181,19 +181,19 @@ const fs = require('fs');
 let filePath = '';
 
 // Open File Handler
-const fileInput = document.getElementById('sequence-file');
+const fileInput = document.getElementById('file-upload');
 fileInput.onchange = () => {
   filePath = fileInput.files[0].name;
   console.log("Abriendo archivo: " + filePath);
 
+  const fileLabel = document.getElementById('file-status');
+  fileLabel.textContent = filePath;
+
   // Use fs.readFile() method to read the file
   fs.readFile(filePath, 'utf8', function (err, data) {
-
     // Load the matrix according to the data stored in the file
     matrix = JSON.parse(data);
-
-    console.log(matrix);
-
+    // Fill the table with the converted data
     fullFillTable(matrix);
   });
 
@@ -261,12 +261,5 @@ function saveMatrixToFile() {
 
 }
 
-
-const { dialog } = require('electron');
-function download() {
-
-const savePath = dialog.showSaveDialog(null);
-console.log(savePath)
-}
 
 generateTable();
