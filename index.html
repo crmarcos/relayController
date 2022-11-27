@@ -10,37 +10,41 @@
 <body>
     <h1>Controlador de Caja de Relés</h1>
 
-    <h4>
-        Version de Node.js <span id="node-version"></span>
-    </h4>
+    <div class="soft-details-container">
+        <h2>Detalles del software:</h2>
+        <h4>
+            Version de Node.js <span id="node-version"></span>
+        </h4>
+        <h4>
+            Version de Chromium <span id="chrome-version"></span>
+        </h4>
+        <h4>
+            Version de Electron <span id="electron-version"></span>
+        </h4>
+        <h4>
+            Version de Serialport <span id="serialport-version"></span>
+        </h4>
+    </div>
 
-    <h4>
-        Version de Chromium <span id="chrome-version"></span>
-    </h4>
+    <hr>
 
-    <h4>
-        Version de Electron <span id="electron-version"></span>
-    </h4>
-
-    <h4>
-        Version de Serialport <span id="serialport-version"></span>
-    </h4>
-
-    <div class="port-container" id="port-container">
+    <div class="port-selection-container" id="port-container">
         <label class="port-lbl">Puerto</label>
         <select class="port-select" id="port-options" value="" name="comm_port" id="port-id">
         </select>
 
         <img class="reload-btn" src="reload.svg" onclick="listSerialPorts()" alt="reload" srcset="">
-        
+
         <button class="port-btn" onclick="connectToPort()">Conectar</button>
 
         <label id="port-status" class="port-status-lbl">No conectado a ningún puerto...</label>
 
     </div>
 
-    <div class="button-container">
-        <h2>Haga click para conmutar estado:</h2>
+    <hr>
+
+    <div class="manual-control-container">
+        <h2>Control manual de Relés:</h2>
         <button onclick="sendData(1)">1</button>
         <button onclick="sendData(2)">2</button>
         <button onclick="sendData(3)">3</button>
@@ -51,10 +55,28 @@
         <button onclick="sendData(8)">8</button>
     </div>
 
-    <div class="personalised-container">
-        <input type="text" id="personalised-command">
-        <button onclick="enviarComandoPersonalizado()">Send</button>
+    <hr>
+
+    <div class="personalised-command-container">
+        <h2>Comando Personalizado:</h2>
+        <input type="text" class="personalised-command" id="personalised-command">
+        <button onclick="sendPersonalisedCommand()">Send</button>
     </div>
+
+    <hr>
+
+    <div class="sequence-container">
+        <h2>Tabla de secuencias:</h2>
+
+        <label for="sequence-file">Select a file:</label>
+        <input type="file" name="sequence-file" id="sequence-file"> 
+        <button onclick="saveTable()">Guardar Cambios de Tabla</button>
+
+        <div id="table-container" class="table-container"></div>
+    </div>
+
+
+    <button onclick="download()">Create file</button>
 
 </body>
 
